@@ -37,15 +37,16 @@ namespace FilmDB.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult Add(FilmModel film) 
+        public async Task<IActionResult> Add(FilmModel film) 
         {
             try
             {
-                _manager.AddFilmAsync(film);
+                await _manager.AddFilmAsync(film);
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 return View(film);
             }
